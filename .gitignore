@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Starter Code Git Ignore
+node_modules/
+.env
+.DS_Store
