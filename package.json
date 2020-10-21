@@ -1,7 +1,7 @@
 {
-  "name": "project2",
+  "name": "audiophile",
   "version": "1.0.0",
-  "description": "Project 2",
+  "description": "audiophile",
   "main": "server.js",
   "scripts": {
     "test": "npm run lint",
@@ -34,10 +34,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tintin92/Project_2.git"
+    "url": "git+https://github.com/tintin92/audiophile.git"
   },
   "bugs": {
-    "url": "https://github.com/tintin92/Project_2/issues"
+    "url": "https://github.com/tintin92/audiophile/issues"
   },
-  "homepage": "https://github.com/tintin92/Project_2#readme"
+  "homepage": "https://github.com/tintin92/audiophile#readme"
 }
