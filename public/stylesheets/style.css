@@ -2,8 +2,9 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
-body, #formFont {
-  font-family: "Open Sans", sans-serif;
+body,
+#formFont {
+  font-family: "Baloo Chettan 2", cursive;
 }
 .navbar-brand {
   font-family: "Bungee Shade", cursive;
@@ -57,7 +58,7 @@ body {
 }
 
 .card-body {
-  box-shadow: 0 0 20px 7px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.1);
 }
 .card {
   margin: 20px 10px;
@@ -66,7 +67,7 @@ body {
   color: #0c7;
   text-decoration: none;
   font-size: 15px;
-  margin-top:auto;
+  margin-top: auto;
   font-weight: 600;
 }
 .card-body a:hover {
@@ -75,11 +76,9 @@ body {
 }
 
 .boxColor {
-  background-color: #343A40;
+  background-color: #343a40;
 }
 
 .accentColor {
-  background-color: #00CC77;
+  background-color: #00cc77;
 }
-
-
