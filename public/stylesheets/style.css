@@ -2,18 +2,24 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+body, #formFont {
+  font-family: "Open Sans", sans-serif;
+}
+.navbar-brand {
+  font-family: "Bungee Shade", cursive;
+}
 
 body {
   background-color: #0c7;
 }
 
 .memberSaveBtn:hover {
-  background-color: #4caf50;
+  background-color: rgb(1, 94, 1);
   color: white;
 }
 
 .memberDeleteBtn:hover {
-  background-color: red;
+  background-color: maroon;
   color: white;
 }
 
@@ -32,23 +38,22 @@ body {
   background: #777;
   color: white;
   position: relative;
-  
 }
 .carousel-item-text {
   position: absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding-bottom:50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 50px;
 }
 .overlay-image {
   position: absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
   background-position: center;
-  background-size:cover;
+  background-size: cover;
 }
 
 .card-body {
