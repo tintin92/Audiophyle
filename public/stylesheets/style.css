@@ -9,6 +9,10 @@ body, #formFont {
   font-family: "Bungee Shade", cursive;
 }
 
+body {
+  background-color: #0c7;
+}
+
 .memberSaveBtn:hover {
   background-color: rgb(1, 94, 1);
   color: white;
@@ -35,7 +39,7 @@ body, #formFont {
   color: white;
   position: relative;
 }
-.container {
+.carousel-item-text {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -51,3 +55,31 @@ body, #formFont {
   background-position: center;
   background-size: cover;
 }
+
+.card-body {
+  box-shadow: 0 0 20px 7px rgba(0,0,0,0.1);
+}
+.card {
+  margin: 20px 10px;
+}
+.card-body a {
+  color: #0c7;
+  text-decoration: none;
+  font-size: 15px;
+  margin-top:auto;
+  font-weight: 600;
+}
+.card-body a:hover {
+  color: #63a;
+  text-decoration: none;
+}
+
+.boxColor {
+  background-color: #343A40;
+}
+
+.accentColor {
+  background-color: #00CC77;
+}
+
+
