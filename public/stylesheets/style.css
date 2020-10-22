@@ -2,3 +2,23 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.memberSaveBtn:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+.memberDeleteBtn:hover {
+  background-color: red;
+  color: white;
+}
+
+.memberDeleteBtn,
+.memberSaveBtn {
+  margin: 3px;
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+}
