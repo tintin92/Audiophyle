@@ -34,7 +34,7 @@ body {
   position: relative;
   
 }
-.container {
+.carousel-item-text {
   position: absolute;
   bottom:0;
   left:0;
@@ -76,3 +76,5 @@ body {
 .accentColor {
   background-color: #00CC77;
 }
+
+
