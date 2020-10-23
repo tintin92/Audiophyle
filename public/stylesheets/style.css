@@ -11,7 +11,7 @@ body,
 }
 
 body {
-  background-color: #1ED760;
+  background-color: #1ed760;
 }
 
 .memberSaveBtn:hover {
@@ -23,9 +23,14 @@ body {
   background-color: maroon;
   color: white;
 }
+.delete-recentBtn:hover {
+  background-color: maroon;
+  color: white;
+}
 
 .memberDeleteBtn,
-.memberSaveBtn {
+.memberSaveBtn,
+.delete-recentBtn {
   margin: 3px;
   padding: 5px;
   background-color: white;
@@ -33,7 +38,6 @@ body {
   transition-duration: 0.4s;
   border-radius: 5px;
 }
-
 .carousel-item {
   height: 32rem;
   background: #777;
@@ -64,7 +68,7 @@ body {
   margin: 20px 10px;
 }
 .card-body a {
-  color: #1ED760;
+  color: #1ed760;
   text-decoration: none;
   font-size: 15px;
   margin-top: auto;
@@ -80,5 +84,5 @@ body {
 }
 
 .accentColor {
-  background-color: #1ED760;
+  background-color: #1ed760;
 }
