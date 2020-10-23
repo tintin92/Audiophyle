@@ -50,4 +50,18 @@ module.exports = function(app) {
       });
     }
   });
+
+  let searchTerm;
+  app.post("/api/search", (req, res) => {
+    searchTerm = req.body.search;
+    res.json({
+      search: req.body.search
+    });
+  });
+
+  app.get("/api/search", (req, res) => {
+    res.json({
+      search: searchTerm
+    });
+  });
 };
