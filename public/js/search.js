@@ -7,7 +7,27 @@ $(document).ready(() => {
     search(artistInput.val().trim());
   });
 
-  function search(artist) {
+  function search(searchTerm) {
+    console.log(searchTerm);
+    $.post("/api/search", {
+      search: searchTerm
+    })
+      .then(() => {
+        window.location.replace("/search");
+        // If there's an error, log the error
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  if (window.location.pathname === "/search") {
+    $.get("/api/search").then(data => {
+      searchArtist(data.search);
+    });
+  }
+
+  function searchArtist(artist) {
     const settings = {
       // eslint-disable-next-line prettier/prettier
       "async": true,
@@ -20,7 +40,7 @@ $(document).ready(() => {
       // eslint-disable-next-line prettier/prettier
       "headers": {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
-        "x-rapidapi-key": process.env.API_KEY
+        "x-rapidapi-key": "951e66441emshfc6c776ab574133p105a72jsnbdc9d6149898"
       }
     };
 
