@@ -54,8 +54,8 @@
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 my-lg-0" id="searchArtist">
+        <input class="form-control mr-sm-2" id="artistInput" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -78,7 +78,7 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Sign Up</button>
+          <button type="submit" class="btn btn-secondary my-2 my-sm-0">Sign Up</button>
         </form>
         <br />
         <p>Already a member? Log in <a href="/login">here</a></p>
@@ -96,6 +96,7 @@
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
+  <script src="js/search.js"></script>
 
 </body>
 
