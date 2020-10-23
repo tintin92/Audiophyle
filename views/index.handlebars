@@ -1,0 +1,74 @@
+<h1>Burgers!</h1>
+
+<h2>Burgers Added</h2>
+<ul>
+  {{#each burgers}}
+  {{#unless devoured}}
+  <li>{{this.burger_name}}
+    <br>
+    
+    <button class="devoured" data-devour="1" data-id="{{this.id}}">Devour!</button>
+  </li>
+  {{/unless}}
+  {{/each}}
+</ul>
+  
+<h2>Burgers Devoured!</h2>
+
+<ul>
+  {{#each burgers}}
+  {{#if devoured}}
+  <li>{{this.burger_name}}
+    <button class="delete-burger" data-id="{{this.id}}">DELETE!</button>
+  </li>
+  {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a burger</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="burger">Burger Name:</label>
+    <input type="text" id="burger" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="burger">Add a Burger</label><br>
+    {{!-- <input type="radio" name="burger" value="1" checked> Devoured!<br> --}}
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
+
+<script>
+  $(".create-form").on("submit", function (event) {
+    event.preventDefault();
+
+    var newBurger = {
+      burger_name: $("#burger").val().trim(),
+      devoured: false
+    };
+
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function () {
+        console.log("added a new burger");
+        location.reload();
+      }
+    );
+  });
+
+  $(".devour-burger").on("click", function (event) {
+    var id = $(this).data("id");
+
+    var devoured = 1;
+
+    var devourBurger = {
+      devour: devoured
+    };
+  });
+
+</script>
