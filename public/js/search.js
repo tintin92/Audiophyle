@@ -25,6 +25,8 @@ $(document).ready(() => {
 
   if (window.location.pathname === "/search") {
     init();
-    $.get("/api/searchArtist/" + storedSearch);
+    $.get("/api/searchArtist/" + storedSearch).then(response => {
+      $("#artistName").text(response.strArtist);
+    });
   }
 });
