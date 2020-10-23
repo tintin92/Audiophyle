@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+      <h2>Audiophyle</h2>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/login">LOGIN<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">LOGOUT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="signup.html">CREATE AN ACCOUNT</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-music"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/members">Library</a>
+            <a class="dropdown-item" href="/members">Wishlist</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/members">Suggested artists</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" id="searchArtist">
+        <input class="form-control mr-sm-2" id="artistInput" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="memberpageDiv m-4">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Saved Artists</strong></h5>
+            <p class="card-text">
+            <ul>
+              <li>Saved artist 1
+                <button class="memberDeleteBtn">Delete</button>
+              </li>
+            </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Saved Songs</strong></h5>
+            <p class="card-text">
+            <ul>
+              <li>Saved song 1
+                <button class="memberSaveBtn">Later</button>
+                <button class="memberDeleteBtn">Delete</button>
+              </li>
+            </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Listen To Later</strong></h5>
+            <p class="card-text">
+            <ul>
+              <li>Songs for later 1
+                <button class="memberSaveBtn">Save</button>
+                <button class="memberDeleteBtn">Delete</button>
+              </li>
+            </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5><strong>Band Merchandise</strong></h5>
+        <div class="card-columns">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Shirts</h5>
+            </div>
+          </div>
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Vinyls</h5>
+            </div>
+          </div>
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Posters</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5><strong>Upcoming Events</strong></h5>
+        <div class="card-columns">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Shows</h5>
+            </div>
+          </div>
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Tour Dates</h5>
+            </div>
+          </div>
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Artist Website</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="text/javascript" src="js/members.js"></script>
