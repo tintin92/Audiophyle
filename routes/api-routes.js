@@ -66,10 +66,10 @@ module.exports = function(app) {
     axios
       .request(options)
       .then(response => {
-        console.log(response.data);
-        const artistName = response.data.artists[0].strArtist;
-        console.log(artistName);
-        res.render("search", { artist: artistName });
+        const artist = response.data.artists[0];
+        console.log(artist);
+
+        res.json(artist);
       })
       .catch(error => {
         console.error(error);
