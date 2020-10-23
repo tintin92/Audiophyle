@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const axios = require("axios");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -51,17 +52,27 @@ module.exports = function(app) {
     }
   });
 
-  let searchTerm;
-  app.post("/api/search", (req, res) => {
-    searchTerm = req.body.search;
-    res.json({
-      search: req.body.search
-    });
-  });
+  app.get("/api/searchArtist/:artistName", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/search.php",
+      params: { s: req.params.artistName },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
 
-  app.get("/api/search", (req, res) => {
-    res.json({
-      search: searchTerm
-    });
+    axios
+      .request(options)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+        const artistName = response.artists[0].strArtist;
+        console.log(artistName);
+        res.render("search", { artist: artistName });
+      });
   });
 };
