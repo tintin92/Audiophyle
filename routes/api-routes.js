@@ -67,12 +67,12 @@ module.exports = function(app) {
       .request(options)
       .then(response => {
         console.log(response.data);
+        const artistName = response.data.artists[0].strArtist;
+        console.log(artistName);
+        res.render("search", { artist: artistName });
       })
       .catch(error => {
         console.error(error);
-        const artistName = response.artists[0].strArtist;
-        console.log(artistName);
-        res.render("search", { artist: artistName });
       });
   });
 };
