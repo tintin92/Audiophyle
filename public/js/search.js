@@ -1,5 +1,3 @@
-require("dotenv").config();
-console.log(process.env);
 $(document).ready(() => {
   const searchForm = $("form#searchArtist"); //hook to signup form
   const artistInput = $("input#artistInput"); //hook to search
@@ -15,8 +13,6 @@ $(document).ready(() => {
   }
 
   if (window.location.pathname === "/search") {
-    $.get("/api/searchArtist/" + artistInput.val().trim()).then(data => {
-      searchArtist(data.search);
-    });
+    $.get("/api/searchArtist/" + artistInput.val().trim());
   }
 });
