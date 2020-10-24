@@ -34,6 +34,8 @@ $(document).ready(() => {
       $("#strFacebook").attr("href", "https://" + response.strFacebook);
       $("#artistWebsite").text(response.strWebsite);
       $("#artistWebsite").attr("href", "https://" + response.strWebsite);
+      $("#strLastFMChart").text(response.strWebsite);
+      $("#strLastFMChart").attr("href", "https://" + response.strWebsite);
     });
   }
 });
