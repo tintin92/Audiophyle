@@ -27,6 +27,9 @@ $(document).ready(() => {
     init();
     $.get("/api/searchArtist/" + storedSearch).then(response => {
       $("#artistName").text(response.strArtist);
+      $("#genre").text(response.strGenre);
+      $("#yearFormed").text(response.intFormedYear);
+      $("#artistPic").text(response.strArtistThumb);
     });
   }
 });
