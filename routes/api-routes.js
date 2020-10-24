@@ -52,6 +52,7 @@ module.exports = function(app) {
     }
   });
 
+  // ================ Artist Search ================
   app.get("/api/searchArtist/:artistName", (req, res) => {
     const options = {
       method: "GET",
@@ -76,13 +77,37 @@ module.exports = function(app) {
       });
   });
 
-  // ============= Song Search ========================
-
-  app.get("/api/searchSong/:songName", (req, res) => {
+  app.get("/api/artist/:artistId", (req, res) => {
     const options = {
       method: "GET",
-      url: "https://rapidapi.p.rapidapi.com/searchtrack.php",
-      params: { t: req.params.songName },
+      url: "https://theaudiodb.p.rapidapi.com/track-top10.php",
+      params: { s: req.params.artistId },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const artist = response.track;
+        console.log(artist);
+
+        res.json(artist);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
+  // ============= Song Search ========================
+
+  app.get("/api/searchSong/:id", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://theaudiodb.p.rapidapi.com/track.php",
+      params: { h: req.params.id },
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
         "x-rapidapi-key": process.env.API_KEY
