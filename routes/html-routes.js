@@ -10,6 +10,10 @@ module.exports = function(app) {
     res.render("search");
   });
 
+  app.get("/songsearch", (req, res) => {
+    res.render("songsearch");
+  });
+
   app.get("/signup", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
