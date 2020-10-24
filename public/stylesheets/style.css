@@ -86,3 +86,9 @@ body {
 .accentColor {
   background-color: #1ed760;
 }
+
+#strTrackThumbSize {
+  height: 250px;
+  width: 225px;
+  margin: 0px;
+}
