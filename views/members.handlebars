@@ -1,11 +1,13 @@
 <div class="memberpageDiv m-4">
   <div class="row">
     <div class="col-sm-4">
-      <div class="card">
+      <div class="card boxColor">
         <div class="card-body">
-          <h5 class="card-title"><strong>Saved Artists</strong></h5>
-          <p class="card-text">
-          <ul>
+          <h5 class="card-title" style="color: white;"><strong>Saved Artists</strong></h5>
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">
+                <ul>
             {{!-- <li>Saved artist 1
               <button class="memberDeleteBtn">Delete</button>
             </li> --}}
@@ -16,10 +18,12 @@
               {{#if save}}Save{{else}}Later{{/if}}
             </button> --}}
 
-            <button class="memberDeleteBtn" data-id="{{this.id}}">Delete</button>
+                  <button class="memberDeleteBtn" data-id="{{this.id}}">Delete</button>
 
-          </ul>
-          </p>
+                </ul>
+                </p>
+              </div>
+            </div>
         </div>
       </div>
     </div>
