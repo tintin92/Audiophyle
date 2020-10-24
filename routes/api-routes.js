@@ -75,4 +75,76 @@ module.exports = function(app) {
         console.error(error);
       });
   });
+
+  app.get("/api/searchArtist/:genre", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/search.php",
+      params: { s: req.params.genre },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const genre = response.data.artists[0];
+        console.log(genre);
+
+        res.json(genre);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
+  app.get("/api/searchArtist/:yearFormed", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/search.php",
+      params: { s: req.params.yearFormed },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const yearFormed = response.data.artists[0];
+        console.log(yearFormed);
+
+        res.json(yearFormed);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
+  app.get("/api/searchArtist/:artistPic", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/search.php",
+      params: { s: req.params.artistPic },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const artistPic = response.data.artists[0];
+        console.log(artistPic);
+
+        res.json(artistPic);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
 };
