@@ -147,4 +147,27 @@ module.exports = function(app) {
         console.error(error);
       });
   });
+  app.get("/api/searchArtist/:strFacebook", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/search.php",
+      params: { s: req.params.strFacebook },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const strFacebook = response.data.artists[0];
+        console.log(strFacebook);
+
+        res.json(strFacebook);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
 };

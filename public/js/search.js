@@ -30,6 +30,7 @@ $(document).ready(() => {
       $("#genre").text(response.strGenre);
       $("#yearFormed").text(response.intFormedYear);
       $("#artistPic").text(response.strArtistThumb);
+      $("#strFacebook").text(response.strFacebook);
     });
   }
 });
