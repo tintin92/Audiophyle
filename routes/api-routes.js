@@ -147,6 +147,11 @@ module.exports = function(app) {
         console.error(error);
       });
   });
+  app.get("/api/searchArtist/:strFacebook", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/search.php",
+      params: { s: req.params.strFacebook },
 
   app.get("/api/searchArtist/:artistWebsite", (req, res) => {
     const options = {
@@ -251,6 +256,7 @@ module.exports = function(app) {
       method: "GET",
       url: "https://rapidapi.p.rapidapi.com/searchtrack.php",
       params: { t: req.params.artistWebsite },
+
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
         "x-rapidapi-key": process.env.API_KEY
@@ -260,10 +266,16 @@ module.exports = function(app) {
     axios
       .request(options)
       .then(response => {
+        const strFacebook = response.data.artists[0];
+        console.log(strFacebook);
+
+        res.json(strFacebook);
+
         const artistWebsite = response.data.track[0];
         console.log(artistWebsite);
 
         res.json(artistWebsite);
+
       })
       .catch(error => {
         console.error(error);
