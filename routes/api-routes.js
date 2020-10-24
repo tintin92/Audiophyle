@@ -152,6 +152,111 @@ module.exports = function(app) {
       method: "GET",
       url: "https://rapidapi.p.rapidapi.com/search.php",
       params: { s: req.params.strFacebook },
+
+  app.get("/api/searchArtist/:artistWebsite", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/search.php",
+      params: { s: req.params.artistWebsite },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const artistWebsite = response.data.artists[0];
+        console.log(artistWebsite);
+
+        res.json(artistWebsite);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
+  // ============= Song Search ========================
+
+  app.get("/api/searchSong/:songName", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/searchtrack.php",
+      params: { t: req.params.songName },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const song = response.data.track[0];
+        console.log(song);
+
+        res.json(song);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
+  app.get("/api/searchSong/:genre", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/searchtrack.php",
+      params: { t: req.params.genre },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const genre = response.data.track[0];
+        console.log(genre);
+
+        res.json(genre);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
+  // app.get("/api/searchSong/:artistPic", (req, res) => {
+  //   const options = {
+  //     method: "GET",
+  //     url: "https://rapidapi.p.rapidapi.com/searchtrack.php",
+  //     params: { t: req.params.artistPic },
+  //     headers: {
+  //       "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+  //       "x-rapidapi-key": process.env.API_KEY
+  //     }
+  //   };
+
+  //   axios
+  //     .request(options)
+  //     .then(response => {
+  //       const artistPic = response.data.track[0];
+  //       console.log(artistPic);
+
+  //       res.json(artistPic);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // });
+
+  app.get("/api/searchSong/:artistWebsite", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/searchtrack.php",
+      params: { t: req.params.artistWebsite },
+
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
         "x-rapidapi-key": process.env.API_KEY
@@ -165,6 +270,12 @@ module.exports = function(app) {
         console.log(strFacebook);
 
         res.json(strFacebook);
+
+        const artistWebsite = response.data.track[0];
+        console.log(artistWebsite);
+
+        res.json(artistWebsite);
+
       })
       .catch(error => {
         console.error(error);

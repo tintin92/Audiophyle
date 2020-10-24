@@ -31,6 +31,8 @@ $(document).ready(() => {
       $("#yearFormed").text(response.intFormedYear);
       $("#artistPic").text(response.strArtistThumb);
       $("#strFacebook").text(response.strFacebook);
+
+      $("#artistWebsite").text(response.strWebsite);
     });
   }
 });
