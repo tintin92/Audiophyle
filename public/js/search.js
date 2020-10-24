@@ -31,14 +31,16 @@ $(document).ready(() => {
   if (window.location.pathname === "/search") {
     init();
     $.get("/api/searchArtist/" + storedSearch).then(response => {
-      $("#artistName").text(response.strArtist);
-      $("#genre").text(response.strGenre);
-      $("#yearFormed").text(response.intFormedYear);
-      $("#artistPic").text(response.strArtistThumb);
+      $("#strArtist").text(response.strArtist);
+      $("#strGenre").text(response.strGenre);
+      $("#strMood").text(response.strMood);
       $("#strFacebook").text(response.strFacebook);
       $("#strFacebook").attr("href", "https://" + response.strFacebook);
+      $("#strLastFMChart").text(response.strLastFMChart);
+      $("#strLastFMChart").attr("href", "https://" + response.strLastFMChart);
       $("#artistWebsite").text(response.strWebsite);
       $("#artistWebsite").attr("href", "https://" + response.strWebsite);
+      $("#strBiographyEN").text(response.strBiographyEN);
     });
     $.get("/api/artist/" + storedSearch).then(response => {
       console.log();
