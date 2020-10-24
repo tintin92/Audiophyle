@@ -75,4 +75,30 @@ module.exports = function(app) {
         console.error(error);
       });
   });
+
+  // ============= Song Search ========================
+
+  app.get("/api/searchSong/:songName", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://rapidapi.p.rapidapi.com/searchtrack.php",
+      params: { t: req.params.songName },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const song = response.data.track[0];
+        console.log(song);
+
+        res.json(song);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
 };

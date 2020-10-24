@@ -27,6 +27,13 @@ $(document).ready(() => {
     init();
     $.get("/api/searchArtist/" + storedSearch).then(response => {
       $("#artistName").text(response.strArtist);
+      $("#genre").text(response.strGenre);
+      $("#yearFormed").text(response.intFormedYear);
+      $("#artistPic").text(response.strArtistThumb);
+      $("#strFacebook").text(response.strFacebook);
+      $("#strFacebook").attr("href", "https://" + response.strFacebook);
+      $("#artistWebsite").text(response.strWebsite);
+      $("#artistWebsite").attr("href", "https://" + response.strWebsite);
     });
   }
 });
