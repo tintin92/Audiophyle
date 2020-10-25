@@ -2,6 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -147,6 +148,29 @@ module.exports = function(app) {
       })
       .catch(error => {
         console.error(error);
+      });
+  });
+
+  app.post("/api/favoriteSong", isAuthenticated, (req, res) => {
+    db.favoriteSong
+      .create({
+        song: req.body.song,
+        userId: req.user.id,
+        later: false
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/favoriteArtist", isAuthenticated, (req, res) => {
+    db.favoriteArtist
+      .create({
+        artist: req.body.artist,
+        userId: req.user.id
+      })
+      .catch(err => {
+        res.status(401).json(err);
       });
   });
 };
