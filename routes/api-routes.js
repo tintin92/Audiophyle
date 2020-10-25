@@ -11,7 +11,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -21,12 +21,12 @@ module.exports = function(app) {
   app.post("/api/signup", (req, res) => {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(401).json(err);
       });
   });
@@ -47,7 +47,7 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
@@ -61,18 +61,18 @@ module.exports = function(app) {
       params: { s: req.params.artistName },
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
-        "x-rapidapi-key": process.env.API_KEY
-      }
+        "x-rapidapi-key": process.env.API_KEY,
+      },
     };
 
     axios
       .request(options)
-      .then(response => {
+      .then((response) => {
         const artist = response.data.artists[0];
 
         res.json(artist);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   });
@@ -84,18 +84,18 @@ module.exports = function(app) {
       params: { s: req.params.artistName },
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
-        "x-rapidapi-key": process.env.API_KEY
-      }
+        "x-rapidapi-key": process.env.API_KEY,
+      },
     };
 
     axios
       .request(options)
-      .then(response => {
+      .then((response) => {
         const artistSongs = response.data.track;
 
         res.json(artistSongs);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   });
@@ -109,18 +109,18 @@ module.exports = function(app) {
       params: { h: req.params.id },
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
-        "x-rapidapi-key": process.env.API_KEY
-      }
+        "x-rapidapi-key": process.env.API_KEY,
+      },
     };
 
     axios
       .request(options)
-      .then(response => {
+      .then((response) => {
         const song = response.data.track[0];
 
         res.json(song);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   });
@@ -134,18 +134,18 @@ module.exports = function(app) {
       params: { format: "track" },
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
-        "x-rapidapi-key": process.env.API_KEY
-      }
+        "x-rapidapi-key": process.env.API_KEY,
+      },
     };
 
     axios
       .request(options)
-      .then(response => {
+      .then((response) => {
         const topSongs = response.data.loved;
 
         res.json(topSongs);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   });

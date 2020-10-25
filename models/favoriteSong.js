@@ -2,16 +2,16 @@ module.exports = function(sequelize, DataTypes) {
   const favoriteSong = sequelize.define("favoriteSong", {
     song: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     later: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
-    }
+      defaultValue: false,
+    },
   });
   return favoriteSong;
 };

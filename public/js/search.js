@@ -3,7 +3,7 @@ $(document).ready(() => {
   const artistInput = $("input#artistInput"); //hook to search
   let storedSearch = "";
 
-  searchForm.on("submit", event => {
+  searchForm.on("submit", (event) => {
     event.preventDefault();
     search(artistInput.val().trim());
   });
@@ -29,7 +29,7 @@ $(document).ready(() => {
 
   if (window.location.pathname === "/search") {
     init();
-    $.get("/api/searchArtist/" + storedSearch).then(response => {
+    $.get("/api/searchArtist/" + storedSearch).then((response) => {
       $("#strArtistThumb").attr("src", response.strArtistThumb);
       $("#strArtist").text("Artist: " + response.strArtist);
       $("#strGenre").text("Genre: " + response.strGenre);
@@ -42,7 +42,7 @@ $(document).ready(() => {
       $("#artistWebsite").attr("href", "https://" + response.strWebsite);
       $("#strBiographyEN").text(response.strBiographyEN);
 
-      $.get("/api/artist/" + storedSearch).then(response => {
+      $.get("/api/artist/" + storedSearch).then((response) => {
         const topSongsEl = $("#topSongs");
         const topTextEl = $("#topText");
         topTextEl.text("Top " + response.length);
@@ -56,14 +56,14 @@ $(document).ready(() => {
         }
       });
     });
-    $("#topSongs").on("click", event => {
+    $("#topSongs").on("click", (event) => {
       const element = event.target;
       const id = element.getAttribute("song-id");
       songSearch(id);
     });
   } else if (window.location.pathname === "/songsearch") {
     init();
-    $.get("/api/searchSong/" + storedSearch).then(response => {
+    $.get("/api/searchSong/" + storedSearch).then((response) => {
       $("#strTrackThumb").attr("src", response.strTrackThumb);
       $("#strTrack").text("Song: " + response.strTrack);
       $("#strArtist").text("Artist: " + response.strArtist);
@@ -79,7 +79,7 @@ $(document).ready(() => {
       $("#strDescriptionEN").text(response.strDescriptionEN);
     });
   } else if (window.location.pathname === "/") {
-    $.get("/api/top20/" + storedSearch).then(response => {
+    $.get("/api/top20/" + storedSearch).then((response) => {
       const topSongsEl = $("#top20");
       const loadingEl = $("#loading");
       for (let i = 0; i < 20; i++) {
@@ -92,7 +92,7 @@ $(document).ready(() => {
       }
       loadingEl.remove();
     });
-    $("#top20").on("click", event => {
+    $("#top20").on("click", (event) => {
       const element = event.target;
       const id = element.getAttribute("song-id");
       songSearch(id);
