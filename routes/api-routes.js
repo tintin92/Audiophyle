@@ -53,6 +53,7 @@ module.exports = function(app) {
   });
 
   // ================ Artist Search ================
+
   app.get("/api/searchArtist/:artistName", (req, res) => {
     const options = {
       method: "GET",
@@ -118,6 +119,31 @@ module.exports = function(app) {
         const song = response.data.track[0];
 
         res.json(song);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
+  // ================ Index Page ================
+
+  app.get("/api/top20", (req, res) => {
+    const options = {
+      method: "GET",
+      url: "https://theaudiodb.p.rapidapi.com/mostloved.php",
+      params: { format: "track" },
+      headers: {
+        "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
+        "x-rapidapi-key": process.env.API_KEY
+      }
+    };
+
+    axios
+      .request(options)
+      .then(response => {
+        const topSongs = response.data.loved;
+
+        res.json(topSongs);
       })
       .catch(error => {
         console.error(error);
