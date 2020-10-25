@@ -3,6 +3,7 @@ const db = require("../models");
 const passport = require("../config/passport");
 const axios = require("axios");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+const { Op } = require("sequelize");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -153,46 +154,91 @@ module.exports = function(app) {
 
   // ================ Members Page Table Data ================
   app.post("/api/favoriteSong", isAuthenticated, (req, res) => {
+    let check;
     db.favoriteSong
-      .create({
-        song: req.body.song,
-        userId: req.user.id,
-        later: 0
+      .findAll({
+        where: {
+          [Op.and]: [{ song: req.body.song }, { userId: req.user.id }]
+        }
       })
-      .then(() => {
-        res.redirect("/members");
-      })
-      .catch(err => {
-        res.status(401).json(err);
+      .then(response => {
+        check = response;
+        console.log(check);
+        if (check.length === 0) {
+          db.favoriteSong
+            .create({
+              song: req.body.song,
+              userId: req.user.id,
+              later: 0
+            })
+            .then(() => {
+              res.redirect("/members");
+            })
+            .catch(err => {
+              res.status(401).json(err);
+            });
+        } else {
+          res.redirect("/members");
+        }
       });
   });
 
   app.post("/api/favoriteSongLater", isAuthenticated, (req, res) => {
+    let check;
     db.favoriteSong
-      .create({
-        song: req.body.song,
-        userId: req.user.id,
-        later: 1
+      .findAll({
+        where: {
+          [Op.and]: [{ song: req.body.song }, { userId: req.user.id }]
+        }
       })
-      .then(() => {
-        res.redirect("/members");
-      })
-      .catch(err => {
-        res.status(401).json(err);
+      .then(response => {
+        check = response;
+        console.log(check);
+        if (check.length === 0) {
+          db.favoriteSong
+            .create({
+              song: req.body.song,
+              userId: req.user.id,
+              later: 1
+            })
+            .then(() => {
+              res.redirect("/members");
+            })
+            .catch(err => {
+              res.status(401).json(err);
+            });
+        } else {
+          res.redirect("/members");
+        }
       });
   });
 
   app.post("/api/favoriteArtist", isAuthenticated, (req, res) => {
+    let check;
     db.favoriteArtist
-      .create({
-        artist: req.body.artist,
-        userId: req.user.id
+      .findAll({
+        where: {
+          [Op.and]: [{ artist: req.body.artist }, { userId: req.user.id }]
+        }
       })
-      .then(() => {
-        res.redirect("/members");
-      })
-      .catch(err => {
-        res.status(401).json(err);
+      .then(response => {
+        check = response;
+        console.log(check);
+        if (check.length === 0) {
+          db.favoriteArtist
+            .create({
+              artist: req.body.artist,
+              userId: req.user.id
+            })
+            .then(() => {
+              res.redirect("/members");
+            })
+            .catch(err => {
+              res.status(401).json(err);
+            });
+        } else {
+          res.redirect("/members");
+        }
       });
   });
 };
