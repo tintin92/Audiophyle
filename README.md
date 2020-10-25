@@ -14,3 +14,8 @@ An application utilizing TheAudio_DB to allow users to search musical artists an
 
 - When a user searches Taylor Swift and clicks on "Blank Space" from the 10 songs list, they will be taken to this page:
   ![taylor swift demo](./public/assets/tswiftdemo.gif)
+
+## Work in Progress
+
+- When a user arrives at the home page, there is a Genre Playlists section that when a genre is clicked will take the user to a playlist of songs based on that genre. We could incorporate this using the Spotify API.
+  ![taylor swift demo](./public/assets/genreplaylists.png)
