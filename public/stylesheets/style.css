@@ -92,3 +92,7 @@ body {
   width: 225px;
   margin: 0px;
 }
+
+.songSearchBtns {
+  padding: 100px;
+}
