@@ -68,7 +68,6 @@ module.exports = function(app) {
       .request(options)
       .then(response => {
         const artist = response.data.artists[0];
-        console.log(artist);
 
         res.json(artist);
       })
@@ -77,11 +76,11 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/artist/:artistId", (req, res) => {
+  app.get("/api/artist/:artistName", (req, res) => {
     const options = {
       method: "GET",
       url: "https://theaudiodb.p.rapidapi.com/track-top10.php",
-      params: { s: req.params.artistId },
+      params: { s: req.params.artistName },
       headers: {
         "x-rapidapi-host": "theaudiodb.p.rapidapi.com",
         "x-rapidapi-key": process.env.API_KEY
@@ -91,10 +90,9 @@ module.exports = function(app) {
     axios
       .request(options)
       .then(response => {
-        const artist = response.track;
-        console.log(artist);
+        const artistSongs = response.data.track;
 
-        res.json(artist);
+        res.json(artistSongs);
       })
       .catch(error => {
         console.error(error);
@@ -118,7 +116,6 @@ module.exports = function(app) {
       .request(options)
       .then(response => {
         const song = response.data.track[0];
-        console.log(song);
 
         res.json(song);
       })

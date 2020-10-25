@@ -87,12 +87,20 @@ body {
   background-color: #1ed760;
 }
 
-#strTrackThumbSize {
-  height: 250px;
-  width: 225px;
+#strTrackThumb {
+  height: 100%;
+  width: 100%;
   margin: 0px;
 }
 
 .songSearchBtns {
   padding: 100px;
+}
+
+.topSongItem {
+  cursor: pointer;
+}
+
+#topSongs li.topSongItem:hover {
+  color: #1ed760;
 }
