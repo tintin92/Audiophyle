@@ -151,12 +151,31 @@ module.exports = function(app) {
       });
   });
 
+  // ================ Members Page Table Data ================
   app.post("/api/favoriteSong", isAuthenticated, (req, res) => {
     db.favoriteSong
       .create({
         song: req.body.song,
         userId: req.user.id,
-        later: false
+        later: 0
+      })
+      .then(() => {
+        res.redirect("/members");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/favoriteSongLater", isAuthenticated, (req, res) => {
+    db.favoriteSong
+      .create({
+        song: req.body.song,
+        userId: req.user.id,
+        later: 1
+      })
+      .then(() => {
+        res.redirect("/members");
       })
       .catch(err => {
         res.status(401).json(err);
@@ -168,6 +187,9 @@ module.exports = function(app) {
       .create({
         artist: req.body.artist,
         userId: req.user.id
+      })
+      .then(() => {
+        res.redirect("/members");
       })
       .catch(err => {
         res.status(401).json(err);
