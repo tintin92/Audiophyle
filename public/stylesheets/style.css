@@ -87,7 +87,7 @@ body {
   background-color: #1ed760;
 }
 
-#strTrackThumb {
+#strTrackThumb, #strArtistThumb {
   height: 100%;
   width: 100%;
   margin: 0px;
@@ -103,4 +103,18 @@ body {
 
 #topSongs li.topSongItem:hover {
   color: #1ed760;
+}
+
+#top20 li.topSongItem:hover {
+  color: #1ed760;
+}
+
+#strMusicVid {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+
+#strMusicVidCard {
+  height: 93.563%;
 }
