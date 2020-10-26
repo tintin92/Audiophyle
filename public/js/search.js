@@ -80,8 +80,6 @@ $(document).ready(() => {
   }
 
   function deleteSong(songId) {
-    console.log("2nd");
-    console.log(songId);
     $.post("/api/deleteSong", {
       song: songId
     })
@@ -102,8 +100,6 @@ $(document).ready(() => {
   }
 
   function updateSong(songId) {
-    console.log("2nd");
-    console.log(songId);
     $.post("/api/updateSong", {
       song: songId
     })
@@ -314,13 +310,11 @@ $(document).ready(() => {
       $(".savedSongsDeleteBtn").on("click", event => {
         const element = event.target;
         const song = element.getAttribute("data-song");
-        console.log(song);
         deleteSong(song);
       });
       $(".savedSongsLaterBtn").on("click", event => {
         const element = event.target;
         const song = element.getAttribute("data-song");
-        console.log(song);
         updateSong(song);
       });
     });

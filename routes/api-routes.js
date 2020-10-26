@@ -163,7 +163,6 @@ module.exports = function(app) {
       })
       .then(response => {
         check = response;
-        console.log(check);
         if (check.length === 0) {
           db.favoriteSong
             .create({
@@ -194,7 +193,6 @@ module.exports = function(app) {
       })
       .then(response => {
         check = response;
-        console.log(check);
         if (check.length === 0) {
           db.favoriteSong
             .create({
@@ -225,7 +223,6 @@ module.exports = function(app) {
       })
       .then(response => {
         check = response;
-        console.log(check);
         if (check.length === 0) {
           db.favoriteArtist
             .create({
