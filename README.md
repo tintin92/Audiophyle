@@ -18,17 +18,9 @@ An application utilizing TheAudio_DB to allow users to search musical artists an
 
   ![top 20 songs demo](./public/assets/top20demo.gif)
 
-- When a user searches for a musical artist, they are presented with an image of the artist, genre, mood, their top songs, artist description, social media links, and an option to save the artist to their member page. When a user clicks on any of those songs, song description, genre, and music video will display on the page. Users will have the option to save the song to their profile in either a "saved songs" list or a "listen to later" list.
+- When a user searches for a musical artist, they are presented with artist information and an option to save the artist to their member page. When a user clicks on a top song from an artist, song information will display on the page. Users have the option to save the song to their profile in either a "saved songs" list or a "listen to later" list. When a user is logged in, their email is displayed in the navbar.
 
-  ![artist search and top 10 search demo](./public/assets/songsearchdemo.gif)
-
-- Users can create an account and save their favorite artists, songs, or songs to listen to later.
-
-  ![top 20 songs demo](./public/assets/.gif)
-
-- When a user is logged in, their email is displayed in the navbar:
-
-  ![top 20 songs demo](./public/assets/emaildisplay.png)
+  ![member page demo](./public/assets/memberdemo.gif)
 
 ## Work in Progress
 
