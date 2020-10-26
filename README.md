@@ -6,11 +6,11 @@ An application utilizing TheAudio_DB to allow users to search musical artists an
 
 ## Languages
 
-<img float="left" alt="JavaScript badge" src="https://img.shields.io/badge/JavaScript-50%25-yellow">
+<img float="left" alt="JavaScript badge" src="https://img.shields.io/badge/JavaScript-57%25-yellow">
 
-<img float="left" alt="Handlebars badge" src="https://img.shields.io/badge/Handlebars-46%25-orange">
+<img float="left" alt="Handlebars badge" src="https://img.shields.io/badge/Handlebars-40%25-orange">
 
-<img float="left" alt="CSS badge" src="https://img.shields.io/badge/CSS-4%25-blueviolet">
+<img float="left" alt="CSS badge" src="https://img.shields.io/badge/CSS-3%25-blueviolet">
 
 ## Features
 
