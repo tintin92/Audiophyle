@@ -22,6 +22,14 @@ An application utilizing TheAudio_DB to allow users to search musical artists an
 
   ![artist search and top 10 search demo](./public/assets/songsearchdemo.gif)
 
+- Users can create an account and save their favorite artists, songs, or songs to listen to later.
+
+  ![top 20 songs demo](./public/assets/.gif)
+
+- When a user is logged in, their email is displayed in the navbar:
+
+  ![top 20 songs demo](./public/assets/emaildisplay.png)
+
 ## Work in Progress
 
 The following features of the Audiophyle application are works in progress or (WIP).
@@ -40,5 +48,5 @@ The following features of the Audiophyle application are works in progress or (W
 
   ## Deployment & Repository
 
-- Heroku: https://audiophyle.herokuapp.com/
+- Heroku: https://audiophyle-music-platform.herokuapp.com/
 - GitHub: https://github.com/tintin92/Audiophyle

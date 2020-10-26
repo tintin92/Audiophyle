@@ -2,6 +2,8 @@
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
+const chalk = require("chalk");
+
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
 
@@ -31,7 +33,9 @@ require("./routes/api-routes.js")(app);
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      chalk.blueBright(
+        "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser."
+      ),
       PORT,
       PORT
     );
