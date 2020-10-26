@@ -7,6 +7,11 @@ $(document).ready(() => {
     event.preventDefault();
     search(artistInput.val().trim());
   });
+  // This file just does a GET request to figure out which user is logged in
+  // and updates the HTML on the page
+  $.get("/api/user_data").then(data => {
+    $(".member-name").text(data.email);
+  });
 
   function search(searchTerm) {
     storedSearch = searchTerm;
@@ -32,9 +37,10 @@ $(document).ready(() => {
     }
   }
 
-  function saveSong(songName) {
+  function saveSong(songId, songName) {
     $.post("/api/favoriteSong", {
-      song: songName
+      song: songId,
+      songName: songName
     })
       .then(() => {
         window.location.replace("/members");
@@ -42,9 +48,10 @@ $(document).ready(() => {
       .catch(handleErr);
   }
 
-  function saveSongLater(songName) {
+  function saveSongLater(songId, songName) {
     $.post("/api/favoriteSongLater", {
-      song: songName
+      song: songId,
+      songName: songName
     })
       .then(() => {
         window.location.replace("/members");
@@ -55,6 +62,60 @@ $(document).ready(() => {
   function saveArtist(artistName) {
     $.post("/api/favoriteArtist", {
       artist: artistName
+    })
+      .then(() => {
+        window.location.replace("/members");
+      })
+      .catch(handleErr);
+  }
+
+  function deleteArtist(artistName) {
+    $.post("/api/deleteArtist", {
+      artist: artistName
+    })
+      .then(() => {
+        window.location.replace("/members");
+      })
+      .catch(handleErr);
+  }
+
+  function deleteSong(songId) {
+    console.log("2nd");
+    console.log(songId);
+    $.post("/api/deleteSong", {
+      song: songId
+    })
+      .then(() => {
+        window.location.replace("/members");
+      })
+      .catch(handleErr);
+  }
+
+  function deleteSongLater(songId) {
+    $.post("/api/deleteSongLater", {
+      song: songId
+    })
+      .then(() => {
+        window.location.replace("/members");
+      })
+      .catch(handleErr);
+  }
+
+  function updateSong(songId) {
+    console.log("2nd");
+    console.log(songId);
+    $.post("/api/updateSong", {
+      song: songId
+    })
+      .then(() => {
+        window.location.replace("/members");
+      })
+      .catch(handleErr);
+  }
+
+  function updateSongLater(songId) {
+    $.post("/api/updateSongLater", {
+      song: songId
     })
       .then(() => {
         window.location.replace("/members");
@@ -128,30 +189,35 @@ $(document).ready(() => {
       $("#strArtist").text("Artist: " + response.strArtist);
       $("#strAlbum").text("Album: " + response.strAlbum);
       $("#strGenre").text("Genre: " + response.strGenre);
-      const strMusicVid =
-        "https://www.youtube.com/embed/" +
-        response.strMusicVid.substring(
-          response.strMusicVid.indexOf("=") + 1,
-          response.strMusicVid.length
-        );
+      let strMusicVid = "";
+      if (response.strMusicVid !== null) {
+        strMusicVid =
+          "https://www.youtube.com/embed/" +
+          response.strMusicVid.substring(
+            response.strMusicVid.indexOf("=") + 1,
+            response.strMusicVid.length
+          );
+      }
       $("#strMusicVid").attr("src", strMusicVid);
       $("#strDescriptionEN").text(response.strDescriptionEN);
-    });
-    // Event listener for saving a Song Button
-    $("#songSaveBtn").on("click", event => {
-      event.preventDefault();
-      const songData = {
-        song: storedSearch
-      };
-      saveSong(songData.song);
-    });
-    // Event listener for saving a Song Later Button
-    $("#songLaterBtn").on("click", event => {
-      event.preventDefault();
-      const songData = {
-        song: storedSearch
-      };
-      saveSongLater(songData.song);
+      // Event listener for saving a Song Button
+      $("#songSaveBtn").on("click", event => {
+        event.preventDefault();
+        const songData = {
+          song: storedSearch,
+          songName: response.strTrack
+        };
+        saveSong(songData.song, songData.songName);
+      });
+      // Event listener for saving a Song Later Button
+      $("#songLaterBtn").on("click", event => {
+        event.preventDefault();
+        const songData = {
+          song: storedSearch,
+          songName: response.strTrack
+        };
+        saveSongLater(songData.song, songData.songName);
+      });
     });
   } else if (window.location.pathname === "/") {
     // This function will make an axios request to the audioDB API and return the top50 songs.
@@ -175,6 +241,135 @@ $(document).ready(() => {
       const element = event.target;
       const id = element.getAttribute("song-id");
       songSearch(id);
+    });
+  } else if (window.location.pathname === "/members") {
+    $.get("/api/savedArtists").then(data => {
+      const savedArtists = $("#savedArtists");
+      for (let i = 0; i < data.length; i++) {
+        const liEl = $("<li>");
+        liEl.text(data[i].artist);
+
+        const viewButton = $("<button>");
+        viewButton.text("View");
+        viewButton.attr("data-artist", data[i].artist);
+        viewButton.addClass("savedArtistsViewBtn");
+        liEl.append(viewButton);
+
+        const deleteButton = $("<button>");
+        deleteButton.text("Delete");
+        deleteButton.attr("data-artist", data[i].artist);
+        deleteButton.attr("data-id", data[i].userId);
+        deleteButton.addClass("savedArtistsDeleteBtn");
+        liEl.append(deleteButton);
+
+        savedArtists.append(liEl);
+      }
+      $(".savedArtistsViewBtn").on("click", event => {
+        const element = event.target;
+        const artist = element.getAttribute("data-artist");
+        search(artist);
+      });
+      $(".savedArtistsDeleteBtn").on("click", event => {
+        const element = event.target;
+        const artist = element.getAttribute("data-artist");
+        deleteArtist(artist);
+      });
+    });
+    // Getting the user's favorite songs from the DB
+    $.get("/api/savedSongs").then(data => {
+      const savedArtists = $("#savedSongs");
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].later === false) {
+          const liEl = $("<li>");
+          liEl.text(data[i].songName);
+
+          const viewButton = $("<button>");
+          viewButton.text("View");
+          viewButton.attr("data-song", data[i].song);
+          viewButton.addClass("savedSongsViewBtn");
+          liEl.append(viewButton);
+
+          const laterButton = $("<button>");
+          laterButton.text("Later");
+          laterButton.attr("data-song", data[i].song);
+          laterButton.attr("data-id", data[i].userId);
+          laterButton.addClass("savedSongsLaterBtn");
+          liEl.append(laterButton);
+
+          const deleteButton = $("<button>");
+          deleteButton.text("Delete");
+          deleteButton.attr("data-song", data[i].song);
+          deleteButton.attr("data-id", data[i].userId);
+          deleteButton.addClass("savedSongsDeleteBtn");
+          liEl.append(deleteButton);
+
+          savedArtists.append(liEl);
+        }
+      }
+      $(".savedSongsViewBtn").on("click", event => {
+        const element = event.target;
+        const id = element.getAttribute("data-song");
+        songSearch(id);
+      });
+      $(".savedSongsDeleteBtn").on("click", event => {
+        const element = event.target;
+        const song = element.getAttribute("data-song");
+        console.log(song);
+        deleteSong(song);
+      });
+      $(".savedSongsLaterBtn").on("click", event => {
+        const element = event.target;
+        const song = element.getAttribute("data-song");
+        console.log(song);
+        updateSong(song);
+      });
+    });
+    // Getting the user's listen to later songs from the DB
+    $.get("/api/savedSongsLater").then(data => {
+      const savedArtists = $("#savedSongsLater");
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].later === true) {
+          const liEl = $("<li>");
+          liEl.text(data[i].songName);
+
+          const viewButton = $("<button>");
+          viewButton.text("View");
+          viewButton.attr("data-song", data[i].song);
+          viewButton.addClass("savedSongsLaterViewBtn");
+          liEl.append(viewButton);
+
+          const saveButton = $("<button>");
+          saveButton.text("Save");
+          saveButton.attr("data-song", data[i].song);
+          saveButton.attr("data-id", data[i].userId);
+          saveButton.addClass("savedSongsLaterSaveBtn");
+          liEl.append(saveButton);
+
+          const deleteButton = $("<button>");
+          deleteButton.text("Delete");
+          deleteButton.attr("data-song", data[i].song);
+          deleteButton.attr("data-id", data[i].userId);
+          deleteButton.addClass("savedSongsLaterDeleteBtn");
+          liEl.append(deleteButton);
+
+          savedArtists.append(liEl);
+        }
+      }
+      $(".savedSongsLaterViewBtn").on("click", event => {
+        const element = event.target;
+        const id = element.getAttribute("data-song");
+        songSearch(id);
+      });
+      $(".savedSongsLaterDeleteBtn").on("click", event => {
+        const element = event.target;
+        const song = element.getAttribute("data-song");
+        deleteSongLater(song);
+      });
+      $(".savedSongsLaterSaveBtn").on("click", event => {
+        const element = event.target;
+        const song = element.getAttribute("data-song");
+        updateSongLater(song);
+      });
     });
   }
 });

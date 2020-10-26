@@ -118,3 +118,9 @@ body {
 #strMusicVidCard {
   height: 93.563%;
 }
+
+.member-name {
+  margin-top: 5px;
+  margin-left: 5px;
+  color: white;
+}
