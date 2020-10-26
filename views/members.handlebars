@@ -7,9 +7,8 @@
             <div class="card">
               <div class="card-body">
                 <p class="card-text">
-                <ul>
-            {{artist}}
-                  <button class="memberDeleteBtn" data-id="{{this.id}}">Delete</button>
+                <ul id="savedArtists">
+                  {{!-- <button class="memberDeleteBtn" data-id="{{this.id}}">Delete</button> --}}
                 </ul>
                 </p>
               </div>
@@ -24,11 +23,11 @@
             <div class="card">
               <div class="card-body">
                 <p class="card-text">
-                <ul>
-                  <li>Saved song 1
+                <ul id="savedSongs">
+                  {{!-- <li>Saved song 1
                     <button class="memberSaveBtn">Later</button>
                     <button class="memberDeleteBtn">Delete</button>
-                  </li>
+                  </li> --}}
                 </ul>
                 </p>
             </div>
@@ -36,19 +35,18 @@
         </div>
       </div>
     </div>
-
     <div class="col-sm-4">
       <div class="card boxColor">
         <div class="card-body">
           <h5 class="card-title" style="color: white;"><strong>Listen To Later</strong></h5>
             <div class="card">
-              <div class="card-box">
+              <div class="card-body">
                 <p class="card-text">
-                <ul>
-                  <li>Songs for later 1
-                    <button class="memberSaveBtn">Save</button>
+                <ul id="savedSongsLater">
+                  {{!-- <li>Saved song 1
+                    <button class="memberSaveBtn">Later</button>
                     <button class="memberDeleteBtn">Delete</button>
-                  </li>
+                  </li> --}}
                 </ul>
                 </p>
             </div>

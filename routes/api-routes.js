@@ -168,6 +168,7 @@ module.exports = function(app) {
           db.favoriteSong
             .create({
               song: req.body.song,
+              songName: req.body.songName,
               userId: req.user.id,
               later: 0
             })
@@ -198,6 +199,7 @@ module.exports = function(app) {
           db.favoriteSong
             .create({
               song: req.body.song,
+              songName: req.body.songName,
               userId: req.user.id,
               later: 1
             })
@@ -239,6 +241,113 @@ module.exports = function(app) {
         } else {
           res.redirect("/members");
         }
+      });
+  });
+
+  app.post("/api/deleteArtist", (req, res) => {
+    db.favoriteArtist
+      .destroy({
+        where: {
+          [Op.and]: [{ artist: req.body.artist }, { userId: req.user.id }]
+        }
+      })
+      .then(() => {
+        res.redirect("/members");
+      });
+  });
+
+  app.post("/api/deleteSong", (req, res) => {
+    db.favoriteSong
+      .destroy({
+        where: {
+          [Op.and]: [{ song: req.body.song }, { userId: req.user.id }]
+        }
+      })
+      .then(() => {
+        res.redirect("/members");
+      });
+  });
+
+  app.post("/api/deleteSongLater", (req, res) => {
+    db.favoriteSong
+      .destroy({
+        where: {
+          [Op.and]: [{ song: req.body.song }, { userId: req.user.id }]
+        }
+      })
+      .then(() => {
+        res.redirect("/members");
+      });
+  });
+
+  app.post("/api/updateSong", (req, res) => {
+    db.favoriteSong
+      .update(
+        {
+          later: 1
+        },
+        {
+          where: {
+            [Op.and]: [{ song: req.body.song }, { userId: req.user.id }]
+          }
+        }
+      )
+      .then(() => {
+        res.redirect("/members");
+      });
+  });
+
+  app.post("/api/updateSongLater", (req, res) => {
+    db.favoriteSong
+      .update(
+        {
+          later: 0
+        },
+        {
+          where: {
+            [Op.and]: [{ song: req.body.song }, { userId: req.user.id }]
+          }
+        }
+      )
+      .then(() => {
+        res.redirect("/members");
+      });
+  });
+
+  // ================ Members Page Appending ================
+  app.get("/api/savedArtists", (req, res) => {
+    db.favoriteArtist
+      .findAll({
+        where: {
+          userId: req.user.id
+        }
+      })
+      .then(data => {
+        res.json(data);
+      });
+  });
+
+  app.get("/api/savedSongs", (req, res) => {
+    db.favoriteSong
+      .findAll({
+        where: {
+          userId: req.user.id
+        }
+      })
+      .then(data => {
+        res.json(data);
+      });
+  });
+
+  app.get("/api/savedSongsLater", (req, res) => {
+    db.favoriteSong
+      .findAll({
+        where: {
+          userId: req.user.id
+        }
+      })
+      .then(data => {
+        res.json(data);
       });
   });
 };
